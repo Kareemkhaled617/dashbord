@@ -8,6 +8,13 @@ import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/utils.dart';
 import 'package:instagram_clone_flutter/widgets/follow_button.dart';
 
+import 'chat/api/apis.dart';
+import 'chat/helper/dialogs.dart';
+import 'chat/models/chat_user.dart';
+import 'chat/screens/chat_screen.dart';
+import 'followers_screen.dart';
+import 'following_screen.dart';
+
 class ProfileScreen extends StatefulWidget {
   final String uid;
   const ProfileScreen({Key? key, required this.uid}) : super(key: key);
@@ -104,8 +111,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     buildStatColumn(postLen, "posts"),
-                                    buildStatColumn(followers, "followers"),
-                                    buildStatColumn(following, "following"),
+                                    InkWell(
+                                        onTap: () {
+
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FollowersScreen(
+                                                        uid: widget.uid,
+                                                      )));
+                                        },
+                                        child: buildStatColumn(
+                                            followers, "followers")),
+                                    InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FollowingScreen(
+                                                        uid: widget.uid,
+                                                      )));
+                                        },
+                                        child: buildStatColumn(
+                                            following, "following")),
                                   ],
                                 ),
                                 Row(
@@ -171,7 +201,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     followers++;
                                                   });
                                                 },
-                                              )
+                                              ),
+                                    FollowButton(
+                                        function: () async {
+                                          // Navigator.push(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           ChatScreen(
+                                          //             userId1: FirebaseAuth
+                                          //                 .instance
+                                          //                 .currentUser!
+                                          //                 .uid,
+                                          //             userId2:
+                                          //                 widget.uid,
+                                          //           )),
+                                          // );
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //         const HomeChat()));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => ChatScreen(user:ChatUser(image: userData['photoUrl'], about: userData['bio'], name:userData['username'] , createdAt: userData["created_at"], isOnline: userData["is_online"], id: userData["id"], lastActive: userData["last_active"], email: userData["email"], pushToken:userData["push_token"] ) )));
+                                          await APIs.addChatUser(userData['email'])
+                                              .then((value) {
+                                            if (!value) {
+                                              Dialogs.showSnackbar(
+                                                  context, 'User does not Exists!');
+                                            }
+                                          });
+                                        },
+                                        backgroundColor:
+                                        const Color.fromRGBO(
+                                            229, 184, 61, 1.0),
+                                        borderColor: const Color.fromRGBO(
+                                            229, 184, 61, 1.0),
+                                        text: userData['type'] == "doctor"?"Consult":"Message",
+                                        textColor: Colors.white),
                                   ],
                                 ),
                               ],
@@ -185,7 +254,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           top: 15,
                         ),
                         child: Text(
-                          userData['username'],
+                          userData['type'] == "doctor"?"${userData['username']} (Doctor)":userData['username'],
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),

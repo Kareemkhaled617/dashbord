@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone_flutter/utils/colors.dart';
 import 'package:instagram_clone_flutter/utils/global_variable.dart';
 
+import '../main.dart';
+
 class WebScreenLayout extends StatefulWidget {
   const WebScreenLayout({super.key});
 
@@ -42,6 +44,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    // mq = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mobileBackgroundColor,

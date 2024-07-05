@@ -28,31 +28,37 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cloud_firestore:
-  cupertino_icons:
-  firebase_auth:
-  firebase_core:
-  firebase_storage:
+  cloud_firestore: ^4.8.1
+  cupertino_icons: ^1.0.2
+  shared_preferences:
+  firebase_messaging:
+  file_picker: ^8.0.5
+  firebase_auth: ^4.6.3
+  firebase_core: ^2.14.0
+  get_it: ^7.6.7
+  injectable:
+  firebase_storage: ^11.2.3
   flutter:
     sdk: flutter
-  flutter_staggered_grid_view:
-  flutter_svg:
-  image_picker:
-  intl:
-  provider:
-  uuid:
-  image_picker_web:
-  file_picker:
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_svg: ^2.0.7
+  image_picker: ^0.8.4+4
+  intl: ^0.18.1
+  provider: ^6.0.1
+  uuid: ^3.0.5
+  url_launcher: ^6.3.0
+  http:
+  cached_network_image:
+  emoji_picker_flutter:
+  gallery_saver:
+  lottie:
+  image_picker_web: ^4.0.0
 dev_dependencies:
+  flutter_lints: ^2.0.1
+  injectable_generator:
+  build_runner:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
