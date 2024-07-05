@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551635500586",
+    "project_id": "skin-care-1d7f7",
+    "storage_bucket": "skin-care-1d7f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551635500586:android:f15ea148480e657bcfcd53",
+        "android_client_info": {
+          "package_name": "com.skin.skin_car"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7q5uYyEvYAJXAlcKd5riHN8q-U0vtaQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
